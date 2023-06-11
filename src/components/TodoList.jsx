@@ -7,17 +7,17 @@ const TodoList = () => {
     const todos = useSelector(state => state.todos.todos);
     return (
         <ul className='todos-list'>
-                {
-                    todos.map(todo => 
-                        <TodoItems
-                            id={todo.id}
-                            text={todo.text} 
-                            completed={todo.completed} 
-                            key={todo.id} >
-                        </TodoItems>
-                    )
-                }
-            </ul>
+            {
+                todos.map(todo => 
+                    <TodoItems
+                        id={todo.id}
+                        title={todo.title} 
+                        completed={todo.completed} 
+                        key={todo.id} >
+                    </TodoItems>
+                )
+            }
+        </ul>
     );
 };
 

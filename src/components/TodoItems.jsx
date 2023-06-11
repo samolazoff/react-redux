@@ -1,9 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteTodo} from '../store/todoSlice';
-import { toggleTodo } from '../store/todoSlice';
-const TodoItems = ({id, text, completed}) => {
+import { removeTodo, toggleStatus} from '../store/todoSlice';
+const TodoItems = ({id, title, completed}) => {
     const dispatch = useDispatch();
 
     return (
@@ -11,10 +10,10 @@ const TodoItems = ({id, text, completed}) => {
             <input type="checkbox" name="compliteTodo"
                 id={'compliteTodo'+id} 
                 checked={completed} 
-                onChange={() => dispatch(toggleTodo({id}))}/>
-            <span className='todo-item__txt'>{text}</span>
+                onChange={() => dispatch(toggleStatus(id))}/>
+            <span className='todo-item__txt'>{title}</span>
             <button className='btn btn-delete'
-                onClick={() => dispatch(deleteTodo({id}))}>
+                onClick={() => dispatch(removeTodo(id))}>
                     DELETE
             </button>
         </li>
