@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+import TodoList from './components/TodoList';
+import InputField from './components/InputField';
+
 import './app.sass';
 
 function App() {
@@ -42,26 +45,23 @@ function App() {
                 }
             )
         )
-    }
+    };
+
     return (
-        <div className="cont app">
-            <label htmlFor="itemTodo" className='app-label'>
-                <input type="text" name="itemTodo" id="itemTodo" value={text} onChange={event =>setText(event.target.value)}/>
-                <button type="submit" className='btn' onClick={addTodo}>Add Todo</button>
-            </label>
+        <section className="cont app">
+            <InputField 
+                handlSubmit={addTodo} 
+                text={text} 
+                handleImput={setText}>
+            </InputField>
             <h1 className='app__title'>List of todos</h1>
-            <ul className='todos-list'>
-                {
-                    todos.map(todo => 
-                        <li key={todo.id} className='todo-item'>
-                            <input type="checkbox" name="compliteTodo" id={'compliteTodo'+todo.id} checked={todo.completed} onChange={() => toggleTodo(todo.id)}/>
-                            <span className='todo-item__txt'>{todo.text}</span>
-                            <button className='btn btn-delete' onClick={() => deleteTodo(todo.id)}>DELETE</button>
-                        </li>
-                    )
-                }
-            </ul>
-        </div>
+            <TodoList 
+                todos={todos} 
+                addTodo={addTodo} 
+                deleteTodo={deleteTodo} 
+                toggleTodo={toggleTodo}>
+            </TodoList>
+        </section>
     );
 };
 
